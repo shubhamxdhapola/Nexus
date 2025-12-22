@@ -39,7 +39,7 @@ export const getUserProfile = async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: "User not found" })
         }
-        const links = await Link.find({ userId: user?._id })
+        const links = await Link.find({ userId: user?._id }).sort({ _id: -1 })
         return res.status(200).json({
             user: {
                 name: user.name,
