@@ -1,5 +1,4 @@
 import ProfileCard from "../components/dashboard/ProfileCard";
-import Modal from "../components/modal";
 import LinkForm from "../components/forms/LinkForm";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import LinkCard from "../components/cards/LinkCard";
 import DeleteConfirmationDialog from "../components/DeleteConfirmationDialog";
 import Preview from "../components/dashboard/Preview";
 import { getAllLinks } from "../redux/slices/link.slice";
+import Modal from "../components/Modal";
 
 const Dashboard = () => {
   const { allLinks, fetchingLinks } = useSelector((state) => state.link);
