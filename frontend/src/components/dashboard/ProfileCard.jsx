@@ -3,7 +3,7 @@ import { useState } from "react";
 import { LuUser } from "react-icons/lu";
 import { useSelector } from "react-redux";
 import ProfileUpdateForm from "../forms/ProfileUpdateForm";
-import Modal from "../modal";
+import Modal from "../Modal";
 
 const ProfileCard = () => {
   const { user } = useSelector((state) => state.auth);
