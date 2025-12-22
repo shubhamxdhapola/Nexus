@@ -1,0 +1,72 @@
+import { ChevronRight, Copy, CopyIcon } from "lucide-react";
+import toast from "react-hot-toast";
+import { LuUser } from "react-icons/lu";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+const Preview = () => {
+  const { allLinks } = useSelector((state) => state.link);
+  const { user } = useSelector((state) => state.auth);
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(
+      `${import.meta.env.VITE_CLIENT_URL}/user/${user?.username}`
+    );
+    toast.success("Profile url copied");
+  };
+  return allLinks?.length > 0 ? (
+    <>
+      <div className="card bg-base-200 py-8 px-6 shadow-md flex justify-start items-center gap-8 mx-auto lg:w-[60%] xl:w-[50%] border-base-content/10 border-[0.5px] ring-4 ring-offset-4 ring-offset-base-100 ring-base-200 max-h-[80vh] overflow-y-scroll scrollbar-hide">
+        <button
+          onClick={handleCopy}
+          className="absolute right-4 top-4 cursor-pointer hover:text-base-content duration-300 text-base-content/80 tooltip tooltip-left"
+          data-tip="Copy URL"
+        >
+          <Copy className=" size-4" />
+        </button>
+        <div className="flex flex-col items-center justify-center gap-4">
+          {user?.profilePic ? (
+            <div className="ring-primary ring-offset-base-100 w-20 rounded-full ring-2 ring-offset-3 flex items-center justify-center">
+              <img
+                src={user?.profilePic}
+                alt="profile-photo"
+                className="w-20 h-20 rounded-full object-cover"
+              />
+            </div>
+          ) : (
+            <div className="avatar">
+              <div className="ring-primary bg-base-100 ring-offset-base-100 w-21 rounded-full ring-2 ring-offset-3 flex items-center justify-center">
+                <LuUser className="text-2xl text-base-content" />
+              </div>
+            </div>
+          )}
+
+          <div className="flex justify-center items-center gap-1 flex-col">
+            <span className="text-base-content">{user?.name}</span>
+            <span className="text-sm text-base-content/70">{user?.bio}</span>
+          </div>
+        </div>
+        <div className="flex flex-col justify-center w-full gap-4 mt-1">
+          {allLinks?.map((link) => (
+            <Link
+              to={link?.url}
+              target="_blank"
+              key={link._id}
+              className="bg-base-100 p-4 text-center text-sm text-base-content card border-base-content/10 border-[0.5px]"
+            >
+              {link?.title}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </>
+  ) : (
+    <div className="flex justify-center items-center min-h-[calc(100vh-84px)]">
+      <p className="text-base-content mx-auto text-center">
+        No preview available, <br />
+        Add links to see the preview
+      </p>
+    </div>
+  );
+};
+
+export default Preview;
