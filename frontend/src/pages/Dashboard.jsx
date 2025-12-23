@@ -9,7 +9,8 @@ import { getAllLinks } from "../redux/slices/link.slice";
 import Modal from "../components/Modal";
 
 const Dashboard = () => {
-  const { allLinks, fetchingLinks } = useSelector((state) => state.link);
+  const { allLinks } = useSelector((state) => state.link);
+  const [initialLoading, setInitialLoading] = useState(true);
   const { authenticating } = useSelector((state) => state.auth);
   const [isAddLinkDialogOpen, setIsAddLinkDialogOpen] = useState(false);
   const [isEditLinkDialogOpen, setIsEditLinkDialogOpen] = useState(false);
@@ -19,10 +20,17 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllLinks());
+    const fetchData = async () => {
+      try {
+        await dispatch(getAllLinks());
+      } finally {
+        setInitialLoading(false);
+      }
+    };
+    fetchData();
   }, [dispatch]);
 
-  if (authenticating || fetchingLinks) {
+  if (authenticating || initialLoading) {
     return (
       <div className="min-h-screen flex justify-center items-center">
         <span className="loading loading-infinity loading-xl"></span>

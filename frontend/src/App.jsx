@@ -4,8 +4,10 @@ import router from "./router/router";
 import { useEffect } from "react";
 import { getUserInfo } from "./redux/slices/auth.slice";
 import { useDispatch, useSelector } from "react-redux";
+import Snowfall from 'react-snowfall'
 
 const App = () => {
+
   const { authenticating } = useSelector((state) => state.auth);
   const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ const App = () => {
 
   return (
     <div data-theme={theme}>
+      {/* <Snowfall color="#82c3d9" /> */}
       <Toaster
         toastOptions={{
           style: { fontSize: "13px", fontFamily: "inherit" },
