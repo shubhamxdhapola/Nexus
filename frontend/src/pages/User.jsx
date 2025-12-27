@@ -12,10 +12,9 @@ const User = () => {
   const [links, setLinks] = useState([]);
   const [searching, setSearching] = useState(true);
   const { theme } = useSelector((state) => state.theme);
-  const location = useLocation()
+  const location = useLocation();
 
   useEffect(() => {
-
     async function fetchUser() {
       const response = await axiosInstace.get(`/api/user/${id}`);
       setUser(response.data.user);
@@ -41,11 +40,11 @@ const User = () => {
   }
   return (
     <div
-      className="flex justify-center items-center min-h-screen"
+      className="flex justify-center items-center min-h-screen flex-col"
       data-theme={theme}
     >
       {links?.length > 0 ? (
-        <div className="card bg-base-200 px-4 pt-8 pb-4 md:pb-6 md:px-6 shadow-md flex items-center gap-8 mx-auto w-90 border-base-content/10 border-[0.5px] ring-4 ring-offset-4 ring-offset-base-100 ring-base-200 max-h-[90vh] overflow-scroll scrollbar-hide">
+        <div className="card bg-base-200 px-4 pt-8 pb-4 md:pb-6 md:px-6 shadow-md flex items-center gap-8 mx-auto w-90 border-base-content/10 border-[0.5px] ring-4 ring-offset-4 ring-offset-base-100 ring-base-200 max-h-[87vh] overflow-scroll scrollbar-hide">
           <button
             onClick={handleCopy}
             className="absolute right-4 top-4 cursor-pointer hover:text-base-content duration-300 text-base-content/80 tooltip tooltip-left"
@@ -96,6 +95,14 @@ const User = () => {
           </p>
         </div>
       )}
+
+      <Link
+        to="https://www.instagram.com/orewashubham"
+        className="-bottom-5 relative text-sm text-base-content"
+        target="_blank"
+      >
+        Developed with 💖 by <span className="underline underline-offset-4 text-primary">SHUBHAM</span>
+      </Link>
     </div>
   );
 };
