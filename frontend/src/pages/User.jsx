@@ -98,7 +98,7 @@ const User = () => {
 
       <Link
         to="https://www.instagram.com/orewashubham"
-        className="-bottom-5 relative text-sm text-base-content"
+        className="-bottom-6 relative text-sm text-base-content"
         target="_blank"
       >
         Developed with 💖 by <span className="underline underline-offset-4 text-primary">SHUBHAM</span>
