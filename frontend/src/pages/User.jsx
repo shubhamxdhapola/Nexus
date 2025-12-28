@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { axiosInstace } from "../utils/axiosInstance";
 import { LuUser } from "react-icons/lu";
@@ -40,15 +40,15 @@ const User = () => {
   }
   return (
     <div
-      className="flex items-center min-h-screen justify-between flex-col pb-5 pt-10 gap-6"
+      className="flex justify-center items-center min-h-screen flex-col"
       data-theme={theme}
     >
       {links?.length > 0 ? (
-        <div className="card bg-base-200 px-4 pt-8 pb-4 md:pb-6 md:px-6 shadow-md flex items-center gap-8 mx-auto w-90 border-base-content/10 border-[0.5px] ring-4 ring-offset-4 ring-offset-base-100 ring-base-200 max-h-[90vh] overflow-scroll scrollbar-hide">
+        <div className="card bg-base-200 px-4 pt-8 pb-4 md:pb-6 md:px-6 shadow-md flex items-center gap-8 mx-auto w-90 border-base-content/10 border-[0.5px] ring-4 ring-offset-4 ring-offset-base-100 ring-base-200 max-h-[87vh] overflow-scroll scrollbar-hide">
           <Link
             to={import.meta.env.VITE_CLIENT_URL}
-            target="_blank"
             className="absolute left-4 top-4 cursor-pointer hover:text-base-content duration-300 text-base-content/80 tooltip tooltip-right"
+            target="_blank"
             data-tip="Join Nexus"
           >
             <UserPlus className="size-4.5" />
@@ -106,7 +106,7 @@ const User = () => {
 
       <Link
         to="https://www.instagram.com/orewashubham"
-        className="text-sm text-base-content"
+        className="-bottom-6 relative text-sm text-base-content"
         target="_blank"
       >
         Developed with 💖 by{" "}
