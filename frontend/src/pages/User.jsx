@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { axiosInstace } from "../utils/axiosInstance";
 import { LuUser } from "react-icons/lu";
-import { Copy } from "lucide-react";
+import { Copy, UserPlus } from "lucide-react";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
@@ -40,11 +40,19 @@ const User = () => {
   }
   return (
     <div
-      className="flex justify-center items-center min-h-screen flex-col"
+      className="flex items-center min-h-screen justify-between flex-col pb-5 pt-10 gap-6"
       data-theme={theme}
     >
       {links?.length > 0 ? (
-        <div className="card bg-base-200 px-4 pt-8 pb-4 md:pb-6 md:px-6 shadow-md flex items-center gap-8 mx-auto w-90 border-base-content/10 border-[0.5px] ring-4 ring-offset-4 ring-offset-base-100 ring-base-200 max-h-[87vh] overflow-scroll scrollbar-hide">
+        <div className="card bg-base-200 px-4 pt-8 pb-4 md:pb-6 md:px-6 shadow-md flex items-center gap-8 mx-auto w-90 border-base-content/10 border-[0.5px] ring-4 ring-offset-4 ring-offset-base-100 ring-base-200 max-h-[90vh] overflow-scroll scrollbar-hide">
+          <Link
+            to={import.meta.env.VITE_CLIENT_URL}
+            target="_blank"
+            className="absolute left-4 top-4 cursor-pointer hover:text-base-content duration-300 text-base-content/80 tooltip tooltip-right"
+            data-tip="Join Nexus"
+          >
+            <UserPlus className="size-4.5" />
+          </Link>
           <button
             onClick={handleCopy}
             className="absolute right-4 top-4 cursor-pointer hover:text-base-content duration-300 text-base-content/80 tooltip tooltip-left"
@@ -98,10 +106,13 @@ const User = () => {
 
       <Link
         to="https://www.instagram.com/orewashubham"
-        className="-bottom-6 relative text-sm text-base-content"
+        className="text-sm text-base-content"
         target="_blank"
       >
-        Developed with 💖 by <span className="underline underline-offset-4 text-primary">SHUBHAM</span>
+        Developed with 💖 by{" "}
+        <span className="underline underline-offset-4 text-primary">
+          SHUBHAM
+        </span>
       </Link>
     </div>
   );
